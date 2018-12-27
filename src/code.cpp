@@ -14,7 +14,7 @@ ros::Publisher finish;
 // Prototype functions
 void gameCallback1(const std_msgs::String::ConstPtr& msg);
 void gameCallback2(const std_msgs::String::ConstPtr& msg);
-void compare(ros::Publisher publisher);
+void compare();
 
 
 int main(int argc, char **argv){

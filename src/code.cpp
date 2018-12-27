@@ -9,7 +9,9 @@ std::string choice1 = "choice1";
 std::string choice2 = "choice2";
 int player1points = 0, player2points = 0;
 bool stop = false;
+ros::Publisher finish;
 
+// Prototype functions
 void gameCallback1(const std_msgs::String::ConstPtr& msg);
 void gameCallback2(const std_msgs::String::ConstPtr& msg);
 void compare(ros::Publisher publisher);
@@ -88,11 +90,11 @@ void compare(){
       ROS_INFO("Game over! Player1 won!");
       stop = true;
       stop2.data = stop;
-      publisher.publish(stop2);
+      finish.publish(stop2);
     }else if(player2points == 3) {
       ROS_INFO("Game over! Player2 won!");
       stop = true;
       stop2.data = stop;
-      publisher.publish(stop2);
+      finish.publish(stop2);
     }
 }

@@ -29,7 +29,6 @@ int main(int argc, char **argv){
   ros::Duration(1.0).sleep();
 
   while(ros::ok() && !stop){
-  ros::spinOnce();
     if(choice1 != "choice1" && choice2 != "choice2"){
       compare();
       choice1 = "choice1";
@@ -37,6 +36,7 @@ int main(int argc, char **argv){
     }
     stop2.data = stop;
     finish.publish(stop2);
+    ros::spinOnce();
   }
 
 

@@ -30,7 +30,7 @@ int main(int argc, char **argv){
   while(ros::ok() && !stop){
   ros::spinOnce();
     if(choice1 != "choice1" && choice2 != "choice2"){
-      compare(finish);
+      compare();
       choice1 = "choice1";
       choice2 = "choice2";
     }

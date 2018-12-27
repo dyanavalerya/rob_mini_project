@@ -9,12 +9,12 @@ std::string choice1 = "choice1";
 std::string choice2 = "choice2";
 int player1points = 0, player2points = 0;
 bool stop = false;
-ros::Publisher finish;
+//ros::Publisher finish;
 
 // Prototype functions
 void gameCallback1(const std_msgs::String::ConstPtr& msg);
 void gameCallback2(const std_msgs::String::ConstPtr& msg);
-void compare();
+void compare(ros::Publisher publisher);
 
 
 int main(int argc, char **argv){
@@ -30,7 +30,7 @@ int main(int argc, char **argv){
   while(ros::ok() && !stop){
   ros::spinOnce();
     if(choice1 != "choice1" && choice2 != "choice2"){
-      compare();
+      compare(finish);
       choice1 = "choice1";
       choice2 = "choice2";
     }
@@ -50,7 +50,7 @@ void gameCallback2(const std_msgs::String::ConstPtr& msg)
   choice2 = msg->data;
 }
 
-void compare(){
+void compare(ros::Publisher publisher){
 
     if(choice1 == "rock" && choice2 == "scissor") {
       ROS_INFO("1p goes to Player 1!");
@@ -90,11 +90,11 @@ void compare(){
       ROS_INFO("Game over! Player1 won!");
       stop = true;
       stop2.data = stop;
-      finish.publish(stop2);
+      publisher.publish(stop2);
     }else if(player2points == 3) {
       ROS_INFO("Game over! Player2 won!");
       stop = true;
       stop2.data = stop;
-      finish.publish(stop2);
+      publisher.publish(stop2);
     }
 }
